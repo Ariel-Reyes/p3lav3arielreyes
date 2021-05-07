@@ -4,7 +4,7 @@
 #include <random>
 #include <time.h>
 using namespace std;
-char* retorno_cadena();
+char* retorno_cadena(int tam);
 char** retorno_matriz(int filas,int columnas,int obstaculos);
 int main() {
 	srand(time(0));
@@ -21,7 +21,18 @@ int main() {
 		switch(opc) {
 			case 1: {
 				char* a;
-				a = retorno_cadena();
+				int tam;
+				cout<<"Ingrese el tama"<<endl;
+				cin>>tam;
+				a = retorno_cadena(tam);
+
+				for(int i=0; i<tam; i++) {
+					cout<<*(a+i)<<endl;
+				}
+
+
+
+
 				break;
 			}
 			case 2: {
@@ -37,11 +48,11 @@ int main() {
 				cin>>obstaculos;
 				matriz = retorno_matriz(filas,columnas,obstaculos);
 				for(int i=0; i<filas; i++) {
-					cout<<"|"; 
+					cout<<"|";
 					for(int j=0; j<columnas; j++) {
-					cout<<"'"<<matriz[i][j]<<"'";
+						cout<<"'"<<matriz[i][j]<<"'";
 					}
-					cout<<"|"; 
+					cout<<"|";
 					cout<<endl;
 				}
 
@@ -68,23 +79,57 @@ int main() {
 	return 0;
 }
 
-char* retorno_cadena() {
+char* retorno_cadena(int tam) {
 	static char arre[100];
-	cout<<"Ingrese el size del arreglo"<<endl;
-	int size;
-	cin>>size;
-	arre[size];
 
-	for(int i=0; i<size; i++) {
+	arre[tam];
+	string ac;
+	string ac2;
+
+	for(int i=0; i<tam; i++) {
 		cout<<"Ingrese el valor de la posicion: "<<i<<": "<<endl;
 		cin>>arre[i];
-
 	}
 
+	int nu;
+	for(int i=0; i<tam; i++) {
+		int num = int(arre[i]);
+
+		if(num>=48 && num<=57) {
+			ac+= arre[i];
+
+		}
+
+		if(num>=48 && num<=57) {
+             int num_plus = int(arre[i+1]); 
+			if(num_plus>=48 && num<=57) {
+				ac = ac + arre[i+1];			
+			}
+
+		}
+		int num_letra = (int) arre[i];
+		if(num_letra==68||num_letra==85||num_letra==82||num_letra==76||num_letra==100||num_letra==108||num_letra==117||num_letra==114) {
+			nu = stoi(ac);
+
+			for(int j=0; j<nu; j++) {
+				ac2 = ac2 + arre[i];
+			}
+			ac = "";
+
+
+		}
+
+
+	}
+	for(int i=0; i<ac2.size(); i++) {
+		arre[i] = ac2[i];
+	}
+
+
+
+
 	return arre;
-
 };
-
 char** retorno_matriz(int filas,int columnas, int obstaculos) {
 
 	char** matriz = new char*[filas];
@@ -106,6 +151,10 @@ char** retorno_matriz(int filas,int columnas, int obstaculos) {
 		char m = matriz[ri][rj];
 		int pala = '-';
 		if(matriz[ri][rj]==pala) {
+			matriz[ri][rj]='#';
+		} else {
+			ri =  rand()% filas;
+			rj = rand() % columnas;
 			matriz[ri][rj]='#';
 		}
 
