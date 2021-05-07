@@ -6,6 +6,7 @@
 using namespace std;
 char* retorno_cadena(int tam);
 char** retorno_matriz(int filas,int columnas,int obstaculos);
+void obstaculos(char* cadena,char** matriz,int filas_m,int columnas_m, int tam_c);
 int main() {
 	srand(time(0));
 
@@ -17,6 +18,7 @@ int main() {
 		cout<<"2...........Matriz con Obstrucciones"<<endl;
 		cout<<"3...........Matriz con instrucciones"<<endl;
 		cout<<"4...........Salir"<<endl;
+		cout<<"Ingrese la opcion que desea: "<<endl; 
 		cin>>opc;
 		switch(opc) {
 			case 1: {
@@ -61,6 +63,25 @@ int main() {
 			}
 
 			case 3: {
+				char* cadena;
+				char** matriz;
+
+				cout<<"Ingrese el tam de la cadena: "<<endl;
+				int tam_cade;
+				cin>>tam_cade;
+				cout<<"Ingrese las filas de la matriz: "<<endl;
+				int filas;
+				cin>>filas;
+				cout<<"Ingrese las columnas de la matriz: "<<endl;
+				int columnas;
+				cin>>columnas;
+				cout<<"Ingrese la cantidad de obstaculos: "<<endl;
+				int obs;
+				cin>>obs;
+
+				cadena = retorno_cadena(tam_cade);
+				matriz = retorno_matriz(filas,columnas,obs);
+				obstaculos(cadena,matriz,filas,columnas,tam_cade); 
 				break;
 			}
 
@@ -101,9 +122,9 @@ char* retorno_cadena(int tam) {
 		}
 
 		if(num>=48 && num<=57) {
-             int num_plus = int(arre[i+1]); 
+			int num_plus = int(arre[i+1]);
 			if(num_plus>=48 && num<=57) {
-				ac = ac + arre[i+1];			
+				ac = ac + arre[i+1];
 			}
 
 		}
@@ -164,5 +185,22 @@ char** retorno_matriz(int filas,int columnas, int obstaculos) {
 	return matriz;
 
 };
+
+void obstaculos(char* cadena,char** matriz, int filas_m,int columnas_m, int tam_c) {
+	
+	for(int i=0; i<filas_m; i++) {
+					cout<<"|";
+					for(int j=0; j<columnas_m; j++) {
+						cout<<"'"<<matriz[i][j]<<"'";
+					}
+					cout<<"|";
+					cout<<endl;
+				}
+	
+	
+	
+};
+
+
 
 
