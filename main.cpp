@@ -18,7 +18,7 @@ int main() {
 		cout<<"2...........Matriz con Obstrucciones"<<endl;
 		cout<<"3...........Matriz con instrucciones"<<endl;
 		cout<<"4...........Salir"<<endl;
-		cout<<"Ingrese la opcion que desea: "<<endl; 
+		cout<<"Ingrese la opcion que desea: "<<endl;
 		cin>>opc;
 		switch(opc) {
 			case 1: {
@@ -81,7 +81,7 @@ int main() {
 
 				cadena = retorno_cadena(tam_cade);
 				matriz = retorno_matriz(filas,columnas,obs);
-				obstaculos(cadena,matriz,filas,columnas,tam_cade); 
+				obstaculos(cadena,matriz,filas,columnas,tam_cade);
 				break;
 			}
 
@@ -187,18 +187,65 @@ char** retorno_matriz(int filas,int columnas, int obstaculos) {
 };
 
 void obstaculos(char* cadena,char** matriz, int filas_m,int columnas_m, int tam_c) {
-	
+	cout<<"Cadena de instrucciones: ";
+	char* ca = cadena;
+	for(int i=0; i<tam_c; i++) {
+		cout<<*(ca+i)<<"";
+	}
+	cout<<endl;
+
 	for(int i=0; i<filas_m; i++) {
-					cout<<"|";
-					for(int j=0; j<columnas_m; j++) {
-						cout<<"'"<<matriz[i][j]<<"'";
-					}
-					cout<<"|";
-					cout<<endl;
-				}
-	
-	
-	
+		cout<<"|";
+		for(int j=0; j<columnas_m; j++) {
+			cout<<"'"<<matriz[i][j]<<"'";
+		}
+		cout<<"|";
+		cout<<endl;
+	}
+	cout<<"Ingrese la posicion en x: "<<endl;
+	int x;
+	cin>>x;
+	cout<<"Ingrese la posicion en y: "<<endl;
+	int y;
+	cin>>y;
+	char numeral = '#';
+	while(matriz[x][y]== numeral) {
+		cout<<"Hay un bloqueo en esa parte :'c "<<endl;
+		cout<<"Ingrese la posicion en x: "<<endl;
+		x;
+		cin>>x;
+		cout<<"Ingrese la posicion en y: "<<endl;
+		y;
+		cin>>y;
+	}
+	int tam=0;
+	while(tam<=tam_c) {
+
+		for(int i=0; i<filas_m; i++) {
+			cout<<"|";
+			for(int j=0; j<columnas_m; j++) {
+				cout<<"'"<<matriz[i][j]<<"'";
+			}
+			cout<<"|";
+			cout<<endl;
+		}
+
+		if(ca[tam]=='U'||ca[tam]=='u') {
+			matriz[x+1][y] = (char)189;
+		}
+		if(ca[tam]=='R'||ca[tam]=='r') {
+			matriz[x][y+1] = (char)187;
+		}
+
+		if(ca[tam]=='D'||ca[tam]=='d') {
+			matriz[x][y] = (char)205;
+		}
+
+		tam++;
+		//system("cls");
+		system("pause");
+
+	}
 };
 
 
