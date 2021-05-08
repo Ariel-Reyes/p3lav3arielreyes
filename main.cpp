@@ -3,7 +3,9 @@
 #include <string>
 #include <random>
 #include <time.h>
+// Ariel Fernando Reyes Castellanos 11912023
 using namespace std;
+// metodos para poder realizar los ejercicios 
 char* retorno_cadena(int tam);
 char** retorno_matriz(int filas,int columnas,int obstaculos);
 void obstaculos(char* cadena,char** matriz,int filas_m,int columnas_m, int tam_c);
@@ -12,7 +14,7 @@ int main() {
 
 	int opc =0;
 	while(opc!=4) {
-
+        // menu 
 		cout<<"-----Menu------"<<endl;
 		cout<<"1...........Cadena Direcciones"<<endl;
 		cout<<"2...........Matriz con Obstrucciones"<<endl;
@@ -32,12 +34,10 @@ int main() {
 					cout<<*(a+i)<<endl;
 				}
 
-
-
-
 				break;
 			}
 			case 2: {
+				// para poder hacer el ejercicio dos mandamos eso como parametro 
 				char** matriz;
 				cout<<"Ingrese filas: "<<endl;
 				int filas;
@@ -78,6 +78,7 @@ int main() {
 				cout<<"Ingrese la cantidad de obstaculos: "<<endl;
 				int obs;
 				cin>>obs;
+			
 
 				cadena = retorno_cadena(tam_cade);
 				matriz = retorno_matriz(filas,columnas,obs);
@@ -94,12 +95,9 @@ int main() {
 				break;
 			}
 		}
-
 	}
-
 	return 0;
 }
-
 char* retorno_cadena(int tam) {
 	static char arre[100];
 
@@ -234,20 +232,15 @@ void obstaculos(char* cadena,char** matriz, int filas_m,int columnas_m, int tam_
 			matriz[x+1][y] = (char)189;
 		}
 		if(ca[tam]=='R'||ca[tam]=='r') {
-			matriz[x][y+1] = (char)187;
+			matriz[x+1][y] = (char)187;
 		}
 
 		if(ca[tam]=='D'||ca[tam]=='d') {
 			matriz[x][y] = (char)205;
 		}
-
 		tam++;
 		//system("cls");
 		system("pause");
 
 	}
 };
-
-
-
-
